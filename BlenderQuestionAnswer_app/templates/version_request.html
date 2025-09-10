@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="m-5">
+  <h2>Version Request</h2>
+  <hr>
+</div>
+
+<div class="row ms-5 mt-5"> <!--input-group-->
+  <div class="col-auto p-1">
+  <div class="dropdown">
+    <button id="dropdownBtn" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      Pick a version
+    </button>
+    <ul class="dropdown-menu">
+      {% for available_version in available_versions %}
+      <li><a class="dropdown-item" onclick="onClickOption('{{available_version}}');">{{available_version}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  </div>
+
+    <div class="col-auto py-1 ps-0">
+      <button class="btn btn-outline-secondary ms-2" onclick="onRequestVersion('{% url 'request_version_vdb' %}')">Request</button>
+    </div>
+
+
+</div>
+
+{% include 'success_alerts.html' %}
+{% include 'error_alerts.html' %}
+
+
+
+{% endblock %}

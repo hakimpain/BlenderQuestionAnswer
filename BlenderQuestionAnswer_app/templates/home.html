@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- <div class="m-5 p-3" style="background-color: rgb(236, 236, 236); border-radius: 5px;"> -->
+
+<div class="chat_list chat_bg mt-5" id="messages_list">
+
+
+
+</div>
+
+<div class="py-2 px-5 chat_bg chat_input">
+    <div class="row align-items-end justify-content-center">
+        <div class="col-8 pe-1">
+            <textarea id="message_input" class="form-control" aria-label="With textarea"
+                style="resize: none; field-sizing: content; background-color: rgb(236, 236, 236); border: 1px solid darkgray;"></textarea>
+        </div>
+
+        <div class="col-auto p-0">
+            <button id="send_msg_btn" onclick="request_answer('{% url 'get_answer' %}');" class="btn btn-outline-secondary">
+                <i class="fas fa-search" id="send_msg_btn_icon"></i>
+            </button>
+        </div>
+        <div class="col-auto px-1">
+            <div class="dropdown">
+                <button id="dropdownBtn" class="btn btn-secondary dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Pick a version
+                </button>
+                <ul class="dropdown-menu">
+                    {% for available_version in available_versions %}
+                    <li><a class="dropdown-item"
+                            onclick="onClickOption('{{available_version}}','{% url 'load_chat_history' available_version %}','{{user.is_authenticated}}');">
+                            {{available_version}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="adv_options_div" class="d-none p-3 mb-1 rounded border border-dark"
+    style="background-color: rgb(209, 209, 209);">
+    <div class="row m-1">
+        <div class="form-check col-auto mt-2">
+            <label class="form-check-label" for="use_memory_cb">Use Memory</label>
+            <input class="form-check-input" type="checkbox" id="use_memory_cb">
+        </div>
+        <button onclick="cleanMemoryHistory('{% url 'clean_chat_history' %}')" class="btn btn-outline-danger col-auto m-1">Clean Memory</button>
+        <!-- <button class="btn btn-outline-danger col-auto m-1">Clean Memory and History</button> -->
+    </div>
+</div>
+
+<button class="btn btn-outline-primary m-1 float-end" onclick="showAdvancedOptions()">Advanced Options <i id="caret_icon" class="fa-solid fa-caret-down"></i></button>
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+
+.chat_list {
+    height: 70vh; /* Fixed height */
+    overflow-y: auto; /* Allows scrolling if content overflows */
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.chat_input{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.chat_bg{
+    border: 1px solid #214258;
+    background-color: #d6d6d6;
+}
+
+.individual_msg{
+    width: 75%;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid black;
+    white-space: normal; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+}
+
+.user_msg{
+    float: left;
+    background-color: #b5c0ca;
+}
+.ai_msg{
+    float:right;
+    background-color: #c5c7c9;
+}
+
+body{
+    background-color: rgb(236, 236, 236);
+}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'success_alerts.html' %}
+{% include 'error_alerts.html' %}
+
+<div class="row mt-3">
+    <div class="col-5 p-3 rounded me-4" style="background-color: lightgray; height: 50%;">
+        <h3 class="my-3"><b>LOGIN</b></h3>
+        <!--Login form-->
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{login_form.username.label|safe}}
+                {{login_form.username}}
+            </div>
+            <div class="form-group">
+                {{login_form.password.label|safe}}
+                {{login_form.password}}
+            </div>
+            <input class="btn btn-primary mt-2 float-end" type="submit" value="Login">
+        </form>
+            
+    </div>
+
+    <div class="col-6 p-3 rounded" style="background-color: lightgray;">
+        <h3 class="my-3"><b>REGISTER</b></h3>
+        <!--Create account form-->
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{register_form.email.label|safe}}
+                {{register_form.email}}
+            </div>
+            <div class="form-group">
+                {{register_form.username.label|safe}}
+                {{register_form.username}}
+            </div>
+            <div class="form-group">
+                {{register_form.password.label|safe}}
+                {{register_form.password}}
+            </div>
+            <div class="form-group">
+                {{register_form.confirm_password.label|safe}}
+                {{register_form.confirm_password}}
+            </div>
+            <input class="btn btn-primary mt-2 float-end" type="submit" value="Register">
+        </form>
+
+        <ul class="errorlist">
+            {% for field in register_form %}
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <li style="color: red;">{{error}}</li>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+            {% if register_form.non_field_errors %}
+            <li style="color: red;">{{register_form.non_field_errors}}</li>
+            {% endif %}
+        </ul>
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}
