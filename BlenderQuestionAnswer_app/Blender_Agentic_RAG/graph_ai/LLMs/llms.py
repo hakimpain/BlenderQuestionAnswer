@@ -1,16 +1,18 @@
 
-from pydantic import BaseModel
-from typing import Annotated,Literal
+from pydantic import BaseModel,Field
+from typing import Literal #Annotated
 from langchain_ollama import ChatOllama
 from langchain_groq import ChatGroq
 from enum import Enum
 from Blender_Agentic_RAG.graph_ai.Tools.tools_main import MainTools
 
 class ContextNodeStruct(BaseModel):
-    answer:Annotated[Literal['yes','no'],'Answer if the question is relevant with yes or no']
+    answer:Literal['yes','no'] = Field(description='Answer if the question is relevant with yes or no')
+    #answer:Annotated[Literal['yes','no'],'Answer if the question is relevant with yes or no']
 
 class QuestionStructure(BaseModel):
-    new_question:Annotated[str,'New rewritten question']
+    new_question:str = Field(description='New rewritten question')
+    #new_question:Annotated[str,'New rewritten question']
 
 class LLMSources(Enum):
     GROQ=0
