@@ -34,7 +34,7 @@ class State(TypedDict):
 def get_initial_state(question,session_id,search_state=SearchState.FIRST_SEARCH,allow_external_search = False,memory_type=MemoryType.TEMPORARY,ai_memory=None):
     
     if memory_type == MemoryType.TEMPORARY:
-        ai_memory = get_temp_ai_memory(session_id)
+        ai_memory = get_temp_ai_memory(session_id).copy()
 
     if isinstance(ai_memory,list) and len(ai_memory) > 5: #trim memory
         ai_memory = ai_memory[-5:]

@@ -12,7 +12,7 @@ def get_temp_ai_memory(session_id):
     global temp_memory
     if session_id not in temp_memory:
         temp_memory[session_id] = []
-    return temp_memory[session_id].copy()
+    return temp_memory[session_id]
 
 def get_data_to_save(state):
     if state['memory_type'] != MemoryType.DISABLED and 'suggestions' in state:
