@@ -56,7 +56,7 @@ class Nodes:
             )),
             *get_memory_str(state)
         ]
-        return {'question': self.llms.llm_new_question_struct.invoke(msgs),'state_name':'rewrite_node'}
+        return {'question': self.llms.llm_new_question_struct.invoke(msgs).new_question,'state_name':'rewrite_node'}
         # prompt_str = ("{conversation}\n"
         #             "The new question should be related to Blender 3D software. "
         #             "Check for semantic intent, meaning and misspelling to formulate an improved question.\n"
